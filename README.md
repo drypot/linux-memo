@@ -1,8 +1,8 @@
 # Linux Memo
 
-[Arch Linux Install 01](md/arch-linux-install-2021-01.md)\
-[Arch Linux Install 02](md/arch-linux-install-2021-02.md)\
-[Arch Linux Install 03](md/arch-linux-install-2021-03.md)
+[Arch Linux Install 2021 01](md/arch-linux-install-2021-01.md)\
+[Arch Linux Install 2021 02](md/arch-linux-install-2021-02.md)\
+[Arch Linux Install 2021 03](md/arch-linux-install-2021-03.md)
 
 
 .
