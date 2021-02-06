@@ -1,12 +1,9 @@
-# Arch Linux Install, Fdisk
+# Arch Linux Install 2021 01
 
-<https://www.archlinux.org>\
-<https://wiki.archlinux.org/index.php/Installation_guide>
+## History
 
-<https://whjeon.com/arch-install/>
-
-First: 2014.01.21, 서버에 설치한 후 메모를 정리.\
-Update: 2021-02-06, 데스크탑에 설치한 후 내용 추가.
+2014-01-21: 서버 설치 후 메모 정리.\
+2021-02-06: 데스크탑 설치 후 내용 추가.
 
 ## 동기
 
@@ -22,6 +19,10 @@ Arch를 설치했다.
 바뀐 것이 많을 것이다.
 
 ## Arch Linux
+
+<https://www.archlinux.org>\
+<https://wiki.archlinux.org/index.php/Installation_guide>\
+<https://whjeon.com/arch-install/>
 
 아치 리눅스는 우분투나 레드헷과 다르게 연도별 배포판이 없다.\
 업데이트하면 최신 버젼이 된다.

@@ -1,4 +1,4 @@
-# Arch Linux Install, Pacstrap
+# Arch Linux Install 2021 02
 
 ## Mirrors
 
