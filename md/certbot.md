@@ -1,13 +1,11 @@
-# Simple Let's Encrypt
+# Certbot 2017
 
 Last Update: 2017.02.02
 
 오래 업데이트되지 않았습니다.\
-많이 고쳐야합니다.\
-참고로만 보세요.
+많이 고쳐야합니다.
 
-<https://letsencrypt.org>
-
+<https://letsencrypt.org>\
 <https://wiki.archlinux.org/index.php/Let’s_Encrypt>
 
 Let's Encrypt 는 무료 웹서버 인증서를 나눠주는 서비스입니다.

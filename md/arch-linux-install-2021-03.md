@@ -1,5 +1,7 @@
 # Arch Linux Install 2021 03
 
+추가 작업이 많이 필요.
+
 ## Root Login
 
 재부팅이 완료되면 root로 로그인한다.
