@@ -292,7 +292,7 @@ reflector 는 접속 속도에 따라 적절한 /etc/pacman.d/mirrorlist 를 생
 
     base linux linux-firmware
 
-기타 초반에 거의 설치해야 할 패키지들.
+초반에 거의 설치해야 할 패키지들.
 
     vim nano  # 에디터 선택
     base-devel
@@ -301,6 +301,10 @@ reflector 는 접속 속도에 따라 적절한 /etc/pacman.d/mirrorlist 를 생
 
 네트웍관리 패키지들이 많다.\
 networkmanager 를 선택한 것은 gnome 에서 어차피 저 놈을 설치하기 때문이다.
+
+기타 개인적 필요에 의한 패키지들.
+
+    git zsh fzf
 
 레이드등 디스크를 복잡하게 구성할 때 필요한 패키지들.
 
