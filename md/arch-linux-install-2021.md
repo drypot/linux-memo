@@ -217,9 +217,9 @@ cfdisk라고 UI가 화려한 것이 있다.
     Device         Start       End   Sectors   Size Type
     /dev/sdb1       2048   1050623   1048576   512M EFI System
     /dev/sdb2    1050624  68159487  67108864    32G Linux filesystem
-    /dev/sdb3   68159488 135268351  67108864    32G Linux swap
-    /dev/sdb4  135268352 202377215  67108864    32G Linux filesystem
-    /dev/sdb5  202377216 488397134 286019919 136.4G Linux filesystem
+    /dev/sdb3   68159488 135268351  67108864    32G Linux filesystem
+    /dev/sdb4  135268352 454842367 319574016 152.4G Linux filesystem
+    /dev/sdb5  454842368 488396799  33554432    16G Linux swap
 
 
 ## Format
@@ -269,8 +269,8 @@ EFI System 파티션은 FAT32로 포멧한다.
     # mkdir /mnt/home
 
     # mount /dev/sda1 /mnt/boot
-    # mount /dev/sda4 /mnt/var
-    # mount /dev/sda5 /mnt/home
+    # mount /dev/sda3 /mnt/var
+    # mount /dev/sda4 /mnt/home
 
 
 ## Mirrors
@@ -578,27 +578,6 @@ chroot 환경 종료.
 wheel 그룹 모두가 sudo를 쓸 수 있게 한다.\
 패스워드 재입력 시간을 60 분으로 설정한다.\
 터미널 별로 패스워드 입력받는 것을 막는다.
-
-
-## sshd
-
-2014년도 내용이라 확인이 필요하다.
-
-설치.
-
-    # pacman -S openssh
-
-데몬을 돌리려면.
-
-    # systemctl start sshd
-    # systemctl enable sshd
-
-설정.
-
-    /etc/ssh/sshd_config
-
-    AllowUsers user1 user2 <-- 특정 유저만 접속 가능하게
-    PermitRootLogin no <-- 루트 로그인 불가능하게
 
 
 ## ufw
