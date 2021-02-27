@@ -2,17 +2,16 @@
 
 Last Update: 2017.02.02
 
-오래 업데이트되지 않았습니다.\
-많이 고쳐야합니다.
+오래 업데이트되지 않았습니다.
 
 <https://letsencrypt.org>\
 <https://wiki.archlinux.org/index.php/Let’s_Encrypt>
 
 Let's Encrypt 는 무료 웹서버 인증서를 나눠주는 서비스입니다.
 
-다향한 OS, 다향한 웹서버, 다양한 구성이 있을 것이기에 LE 에서도 엄청나게 다양한 시나리오를 제공합니다.
+다향한 OS, 웹서버 구성이 있을 것이기에 LE 에서도 다양한 시나리오를 제공합니다.
 
-저는 Arch Linux 를 쓰고 있고, nginx 웹서버를 쓰고 있고, 서버 관리자입니다.
+저는 Arch Linux + nginx 를 쓰고 있습니다.\
 아래 내용은 제 경우의 시나리오입니다.
 
 
