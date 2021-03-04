@@ -2,7 +2,13 @@
 
 Last Update: 2017.02.02
 
-오래 업데이트되지 않았습니다.
+이 글은 오래 업데이트되지 않았습니다\
+아래 새로 작성한 문서를 봐주세요.
+
+[nginx-2021.md](nginx-2021.md)\
+[certbot-2021.md](certbot-2021.md)
+
+## Let's Encrypt
 
 <https://letsencrypt.org>\
 <https://wiki.archlinux.org/index.php/Let’s_Encrypt>
