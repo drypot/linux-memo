@@ -315,10 +315,19 @@ Nginx 버전에 따라, 서버에 설치된 SSL 버전에 따라, 대상으로 �
 
     /data/nginx/letsencrypt/options-ssl-nginx.conf
 
+파일 소유권, 퍼미션 수정이 필요하면 적당히 해줍니다.
+
+    $ sudo chown root:root /data/nginx/letsencrypt/options-ssl-nginx.conf
+    $ sudo chmod 644 /data/nginx/letsencrypt/options-ssl-nginx.conf
+
 이 파일은 한번 저장해두고 모든 https 서버 블럭에서 인클루드하면 됩니다.
 
 이걸 Certbot이 미리 좀 만들어주면 좋겠는데 `install` 명령을 실행했을 때만 만듭니다.
-저는 `install`을 쓰지 않아서 수작업으로 넣어줬습니다. 포럼에 보니 `certonly` 사용자들을 위해 이것만 자동으로 만들어 달라는 요청이 있긴 한데 구현될지는 미지수입니다.
+저는 `install`을 쓰지 않아서 수작업으로 넣어줬습니다.
+
+포럼에 보니 `certonly` 사용자들을 위해 이것만 자동으로 만들어 달라는 요청이 있긴 한데 구현될지는 미지수입니다.
+
+<https://community.letsencrypt.org/t/generating-options-ssl-nginx-conf-and-ssl-dhparams-in-certonly-mode/136272>
 
 ## ssl_dhparam
 
@@ -333,6 +342,11 @@ dhparam을 만드는 방법은 위 모잘라 사이트 인자들 사이에 코�
 제 경우 아래 위치에 만들었습니다.
 
     /data/nginx/letsencrypt/ssl-dhparams.pem
+
+파일 소유권, 퍼미션 수정이 필요하면 적당히 해줍니다.
+
+    $ sudo chown root:root ssl-dhparams.pem
+    $ sudo chmod 644 ssl-dhparams.pem
 
 이것도 한번 만들면 모든 서버 블럭에서 공용으로 쓰면 됩니다.
 
