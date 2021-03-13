@@ -390,7 +390,17 @@ Nginx 도커로 들어가서 설정을 테스트합니다.
 
 ## 인증서 재발급 자동화
 
-재발급 자동화는 아직 안 했습니다.
-가끔 들어가 프로세스들도 확인하고 인증서도 재발급할 예정입니다.
+일주일에 한번 화요일 새벽에 스크립트를 돌리도록 crontab 을 설정했습니다.
 
-크론에 올리게 되면 해보고 업데이트하도록 하겠습니다.
+root 용 crontab 수정.
+
+    $ sudo crontab -e
+
+crontab 내용.
+
+    0 5 * * 2 /data/nginx/nginx-conf/aws1/d-certbot-renew.sh
+    30 5 * * 2 /data/nginx/nginx-conf/aws1/d-nginx-reload.sh
+
+화요일 새벽 5시에인증서를 업데이트합니다.\
+화요일 새벽 5시 반에 nginx에서 갱신된 인증서를 리로드합니다.
+
