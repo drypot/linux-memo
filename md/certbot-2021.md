@@ -401,6 +401,6 @@ crontab 내용.
     0 5 * * 2 /data/nginx/nginx-conf/aws1/d-certbot-renew.sh
     30 5 * * 2 /data/nginx/nginx-conf/aws1/d-nginx-reload.sh
 
-화요일 새벽 5시에인증서를 업데이트합니다.\
+화요일 새벽 5시에 인증서를 업데이트합니다.\
 화요일 새벽 5시 반에 nginx에서 갱신된 인증서를 리로드합니다.
 
