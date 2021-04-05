@@ -5,7 +5,7 @@
 <https://wiki.archlinux.org/index.php/Localization_(한국어)/Korean_(한국어)>\
 <https://wiki.archlinux.org/index.php/User:Isaac914/uim>
 
-Arch Linux + Gnome + Wayland 에서\
+Arch Linux + Gnome + Wayland/X.org 에서\
 uim + Byeoru 한글입력기를 설치하는 과정이다.
 
 2021년 2월 기준. 
@@ -43,64 +43,23 @@ Debian 문서들을 보면 apt-get으로 이정도 하면 그냥 된다고 나�
 Arch 경우엔 아직 자동화가 안 된 것 같다.\
 수작업을 해야 했다.
 
-## Xorg 와 Wayland 차이
+## uim 테스트
 
-Xorg 세팅은 쉘 스크립트로 하면 됐었다.\
-Wayland는 systemd를 사용하기 때문에 쉘 스크립트를 쓸 수 없다.
+아래 환경변수가 세팅되어 있어야 한다.
 
-Arch 문서는 Xorg 기준으로 되어있다.\
-Wayland에 설치하기 위해서는 수정해야 할 부분들이 있었다.
+    $ export GTK_IM_MODULE='uim'
+    $ export QT_IM_MODULE='uim'
+    $ export XMODIFIERS='@im=uim'
 
-## uim 환경변수
+uim을 실행한다.
 
-처음엔 공식문서를 Wayland 기준으로 수정해서 아래처럼 했었다.
-
-    ~/.config/systemd/user/uim-env.service
-
-    [Unit]
-    Description=uim environment initialization
-    Before=graphical-session.target
-
-    [Service]
-    Type=oneshot
-    ExecStart=/usr/bin/systemctl --user set-environment XMODIFIERS=@im=uim
-    ExecStart=/usr/bin/systemctl --user set-environment GTK_IM_MODULE=uim
-    ExecStart=/usr/bin/systemctl --user set-environment QT_IM_MODULE=uim
-
-아치 문서의 xorg.target을 graphical-session.target으로 수정했다.
-
-다 좋았는데 윈도우 시스템에 이벤트를 거니 환경변수 세팅 템포가 느렸다.\
-자동 시작하는 프로그램들에 환경변수가 전달되지 않았다.
-
-해서 아래처럼 environment.d 루틴에 환경변수 세팅을 맡겼다.
-
-    ~/.config/environment.d/im.conf
-
-    GTK_IM_MODULE=uim
-    QT_IM_MODULE=uim
-    XMODIFIERS=@im=uim
-
-environment.d 도 systemd --user 세션 초기화 과정중 일부이다.\
-일단은 이렇게 해봤는데 문제가 사라진 것 같다.\
-이게 더 좋은 방법인지는 확실하지 않다.\
-리눅스 데스크탑을 10년만에 세팅하고 있는 중이다.
-
-## uim-xim 테스트
-
-일단 여기까지 하고 재부팅했다.\
-uim-xim을 서비스로 등록하기 전에 작동하는지 확인하고 싶었다.
-
-재부팅하면 터미널을 열어서 uim-xim 을 실행시킨다.
-
-    $ uim-xim
+    $ uim-xim &
 
 다른 환경, 다른 IM에서 보통 이정도 하면 화면에 언어 선택기가 추가된다.\
 uim은 그렇지 않다. 화면에 아무 변화가 없다.
 
 uim-xim은 gnome의 기본 틀을 무시하고 영문 자판에 붙어서 조용히 동작한다.\
 약간 당황 스럽지만 그렇다.
-
-## uim 설정
 
 uim 설정을 해야 한글 입력을 테스트할 수 있다.
 
@@ -146,7 +105,61 @@ IntelliJ에서 한글을 입력할 때마다 uim-xim 터미널에 에러가 올�
 
     $ sudo pacman -S gtk2
 
-## uim-xim 서비스 등록
+## 부팅시 uim 자동 실행
+
+X.org 환경과 Wayland 환경에서 설정 방법이 다르다.
+
+### X.org
+
+`.xprofile`에 아래 내용을 넣어주고 재부팅하는 것으로 끝난다.
+
+    export GTK_IM_MODULE='uim'
+    export QT_IM_MODULE='uim'
+    uim-xim &
+    export XMODIFIERS='@im=uim'
+
+### Wayland
+
+Wayland는 systemd를 사용하기 때문에 쉘 스크립트를 쓸 수 없다.
+
+Arch 문서는 Xorg 기준으로 되어있다.\
+Wayland에 설치하기 위해서는 수정해야 할 부분들이 있었다.
+
+#### Wayland / uim 환경변수
+
+처음엔 공식문서를 Wayland 기준으로 수정해서 아래처럼 했었다.
+
+    ~/.config/systemd/user/uim-env.service
+
+    [Unit]
+    Description=uim environment initialization
+    Before=graphical-session.target
+
+    [Service]
+    Type=oneshot
+    ExecStart=/usr/bin/systemctl --user set-environment XMODIFIERS=@im=uim
+    ExecStart=/usr/bin/systemctl --user set-environment GTK_IM_MODULE=uim
+    ExecStart=/usr/bin/systemctl --user set-environment QT_IM_MODULE=uim
+
+아치 문서의 xorg.target을 graphical-session.target으로 수정했다.
+
+다 좋았는데 윈도우 시스템에 이벤트를 거니 환경변수 세팅 템포가 느렸다.\
+자동 시작하는 프로그램들에 환경변수가 전달되지 않았다.
+
+해서 아래처럼 environment.d 루틴에 환경변수 세팅을 맡겼다.
+
+    ~/.config/environment.d/im.conf
+
+    GTK_IM_MODULE=uim
+    QT_IM_MODULE=uim
+    XMODIFIERS=@im=uim
+
+environment.d 도 systemd --user 세션 초기화 과정중 일부이다.\
+일단은 이렇게 해봤는데 문제가 사라진 것 같다.\
+이게 더 좋은 방법인지는 확실하지 않다.\
+리눅스 데스크탑을 10년만에 세팅하고 있는 중이다.
+
+#### Wayland / uim-xim 서비스 등록
 
 로그인 할 때 uim-xim이 자동 실행되도록 설정을 해야한다.
 
