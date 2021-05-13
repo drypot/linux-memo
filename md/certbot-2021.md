@@ -373,14 +373,15 @@ Nginx 도커로 들어가서 설정을 테스트합니다.
 
 아래 스크립트에 재발급 코드를 적어놨습니다.
 
-    $ ./d-certbot-renew.sh
+    $ ./d-certbot-renew-cron.sh
 
 내용은 아래와 같습니다.
 
     #!/bin/bash
     args=(
       --name certbot-renew
-      -it --rm 
+    # -it 
+      --rm 
       --mount type=bind,source=/data/nginx/letsencrypt,target=/etc/letsencrypt
       --mount type=bind,source=/var/lib/letsencrypt,target=/var/lib/letsencrypt
       certbot/certbot:v1.12.0
@@ -388,19 +389,28 @@ Nginx 도커로 들어가서 설정을 테스트합니다.
     )
     docker run "${args[@]}" "$@"
 
+인터렉티브하게 돌릴 것이 아니므로 `-it` 인자는 넣지 않습니다.
+
 ## 인증서 재발급 자동화
 
 일주일에 한번 화요일 새벽에 스크립트를 돌리도록 crontab 을 설정했습니다.
 
-root 용 crontab 수정.
+crontab을 수정. 
 
-    $ sudo crontab -e
+    $ sudo crontab -e  # root 용을 수정
+    $ crontab -e       # 일반 사용자용을 수정
+
+스크립트 실행에 필요한 퍼미션에 따라 root/일반 cron을 구분해서 사용합니다.  
+제 경우 모든 서버 스크립트를 일반 계정으로 돌리고 있어서 `crontab -e`를 썼습니다.
 
 crontab 내용.
 
-    0 5 * * 2 /data/nginx/nginx-conf/aws1/d-certbot-renew.sh
-    30 5 * * 2 /data/nginx/nginx-conf/aws1/d-nginx-reload.sh
+    0 5 * * 2 /data/nginx/nginx-conf/aws1/d-certbot-renew-cron.sh > /data/cron/certbot.log 2>&1
+    30 5 * * 2 /data/nginx/nginx-conf/aws1/d-nginx-reload-cron.sh > /data/cron/nginx.log 2>&1
 
 화요일 새벽 5시에 인증서를 업데이트합니다.\
 화요일 새벽 5시 반에 nginx에서 갱신된 인증서를 리로드합니다.
 
+`> /data/cron/certbot.log` 부분은 스크립트 실행시 적당한 곳에 로그를 남기는 것입니다.
+
+`2>&1`는 2번 stderr 파일핸들 출력을 1번으로 함께 보냅니다.
