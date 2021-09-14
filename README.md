@@ -3,11 +3,13 @@
 [Arch Linux Install 2014](md/arch-linux-install-2014.md)\
 [Arch Linux Install 2021](md/arch-linux-install-2021.md)
 
+[uim Install 2021](md/uim-install-2021.md)
+
 [MDADM 2011](md/mdadm-2011.md)
 
-[Nginx 2021](md/nginx-2021.md)
+Nginx, Certbot 관련 글은 이사갔습니다.\
+<https://github.com/drypot/web-memo>
 
-[Certbot 2017](md/certbot-2017.md)\
-[Certbot 2021](md/certbot-2021.md)
+## License
 
-[uim Install 2021](md/uim-install-2021.md)
+[MIT](LICENSE)
