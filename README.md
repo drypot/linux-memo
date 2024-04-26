@@ -8,7 +8,7 @@
 [MDADM 2011](md/mdadm-2011.md)
 
 Nginx, Certbot 관련 글은 이사갔습니다.\
-<https://github.com/drypot/web-memo>
+<https://drypot.github.io/web-memo/>
 
 ## License
 
